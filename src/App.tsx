@@ -83,7 +83,11 @@ const App: () => JSX.Element = () => {
             >
               <Modal.Body>
                 <h2>Yesterday&apos;s Answers:</h2>
-                <ListGroup variant="flush">
+                <ListGroup
+                  variant="flush"
+                  className="d-block"
+                  style={{ columnCount: 3 }}
+                >
                   {challenge &&
                     challenge.yesterday.answers.map(answer => {
                       return (
