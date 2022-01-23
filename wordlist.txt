@@ -1582,6 +1582,8 @@ comento
 comer
 cometa
 cometer
+comicio
+comico
 comida
 como
 comover
