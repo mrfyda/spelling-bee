@@ -1,5 +1,3 @@
-a
-aba
 abacaxi
 abade
 abadia
@@ -18,7 +16,6 @@ abarcar
 abate
 abater
 abatido
-abc
 abdicar
 abdome
 abeirar
@@ -1148,7 +1145,6 @@ camelo
 camera
 caminho
 camisa
-camp
 campa
 campear
 campina
@@ -3309,11 +3305,11 @@ inibido
 inibir
 inicial
 iniciar
+inicio
 inimigo
 injusto
 inodoro
 inovar
-inq
 insano
 insecto
 inserir
@@ -3827,6 +3823,7 @@ mangue
 manha
 manhoso
 mania
+maniaco
 maninho
 manir
 manjar
@@ -4020,6 +4017,7 @@ minguar
 minhoca
 minhoto
 mini
+minimo
 minorar
 minoria
 minuta
