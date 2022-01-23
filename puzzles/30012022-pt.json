@@ -1,12 +1,12 @@
 {
   "centerLetter": "i",
   "outerLetters": [
-    "m",
-    "e",
-    "a",
     "u",
     "r",
-    "q"
+    "e",
+    "a",
+    "q",
+    "m"
   ],
   "answers": [
     "ameia",
@@ -37,5 +37,5 @@
     "ruir",
     "ureia"
   ],
-  "id": "27012022"
+  "id": "30012022"
 }
