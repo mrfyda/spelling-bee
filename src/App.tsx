@@ -16,8 +16,17 @@ const App: () => JSX.Element = () => {
   const [showAnswers, setShowAnswers] = useState(false);
   const [challenge, setChallenge] = useState<DailyChallenge>();
 
+  const [guessedWords, setGuessedWords] = useState<string[]>([]);
+
   useEffect(() => {
-    loadDailyChallenge().then(setChallenge);
+    loadDailyChallenge().then(c => {
+      setChallenge(c);
+      setGuessedWords(
+        JSON.parse(
+          window.localStorage.getItem(`${c.yesterday.id}|guessedWords`) || '',
+        ),
+      );
+    });
   }, []);
 
   return (
@@ -93,11 +102,19 @@ const App: () => JSX.Element = () => {
                       return (
                         <ListGroup.Item
                           key={answer}
-                          className={`${
-                            isPangram(challenge.yesterday, answer)
-                              ? 'fw-bold'
-                              : ''
-                          }`}
+                          className={
+                            `${
+                              isPangram(challenge.yesterday, answer)
+                                ? 'fw-bold'
+                                : ''
+                            }` +
+                            ` ` +
+                            `${
+                              !guessedWords.includes(answer)
+                                ? 'text-danger'
+                                : ''
+                            }`
+                          }
                         >
                           {answer}
                         </ListGroup.Item>
