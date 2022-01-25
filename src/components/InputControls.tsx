@@ -5,7 +5,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import styled from 'styled-components';
 import { Puzzle } from './Puzzle';
-import { haveSameContents } from './haveSameContents.js';
+import { haveSameContents } from '../common/haveSameContents.js';
+import { shuffle } from '../common/shuffle';
 
 const Hex = styled.div`
   margin-left: -26px;
@@ -130,6 +131,14 @@ export const InputControls: React.FC<{
     }
   }
 
+  function showHint(): void {
+    const nextWord = shuffle(
+      puzzle.answers.filter(a => !guessedWords.includes(a)),
+    )[0];
+    // eslint-disable-next-line no-alert
+    alert(nextWord.replace(/(.).{1,3}/g, '$1 _ _ _ '));
+  }
+
   return (
     <Container>
       <Row>
@@ -246,6 +255,13 @@ export const InputControls: React.FC<{
             onClick={() => clear()}
           >
             Delete
+          </Button>{' '}
+          <Button
+            className="mx-2"
+            variant="outline-primary"
+            onClick={() => showHint()}
+          >
+            Hint
           </Button>{' '}
           <Button
             className="mx-2"
