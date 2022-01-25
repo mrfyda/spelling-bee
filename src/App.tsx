@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ListGroup, Modal, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Modal, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -9,24 +9,15 @@ import {
   DailyChallenge,
   loadDailyChallenge,
 } from './components/DailyChallenge';
-import { isPangram } from './components/InputControls';
+import { YesterdaysAnswers } from './components/YesterdaysAnswers';
 
 const App: () => JSX.Element = () => {
-  const [showRules, setShowRules] = useState(false);
   const [showAnswers, setShowAnswers] = useState(false);
+  const [showRules, setShowRules] = useState(false);
   const [challenge, setChallenge] = useState<DailyChallenge>();
 
-  const [guessedWords, setGuessedWords] = useState<string[]>([]);
-
   useEffect(() => {
-    loadDailyChallenge().then(c => {
-      setChallenge(c);
-      setGuessedWords(
-        JSON.parse(
-          window.localStorage.getItem(`${c.yesterday.id}|guessedWords`) || '',
-        ),
-      );
-    });
+    loadDailyChallenge().then(setChallenge);
   }, []);
 
   return (
@@ -83,46 +74,13 @@ const App: () => JSX.Element = () => {
                 </ul>
               </Modal.Body>
             </Modal>
-            <Modal
-              show={showAnswers}
-              onHide={() => setShowAnswers(false)}
-              size="lg"
-              aria-labelledby="contained-modal-title-vcenter"
-              centered
-            >
-              <Modal.Body>
-                <h2>Yesterday&apos;s Answers:</h2>
-                <ListGroup
-                  variant="flush"
-                  className="d-block"
-                  style={{ columnCount: 3 }}
-                >
-                  {challenge &&
-                    challenge.yesterday.answers.map(answer => {
-                      return (
-                        <ListGroup.Item
-                          key={answer}
-                          className={
-                            `${
-                              isPangram(challenge.yesterday, answer)
-                                ? 'fw-bold'
-                                : ''
-                            }` +
-                            ` ` +
-                            `${
-                              !guessedWords.includes(answer)
-                                ? 'text-danger'
-                                : ''
-                            }`
-                          }
-                        >
-                          {answer}
-                        </ListGroup.Item>
-                      );
-                    })}
-                </ListGroup>
-              </Modal.Body>
-            </Modal>
+            {challenge && (
+              <YesterdaysAnswers
+                puzzle={challenge.yesterday}
+                showAnswers={showAnswers}
+                setShowAnswers={setShowAnswers}
+              />
+            )}
           </Col>
         </Row>
       </Container>
