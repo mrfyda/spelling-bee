@@ -34,7 +34,13 @@ jobs:
         run: yarn install
 
       - name: Run the tests and generate coverage report
-        run: yarn test --coverage
+        run: yarn test --coverage --watchAll=false
+
+      - name: Run codacy-coverage-reporter
+        uses: codacy/codacy-coverage-reporter-action@v1
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          coverage-reports: coverage/lcov.info
 
       - name: Build
         run: yarn build
