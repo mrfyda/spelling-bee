@@ -10,10 +10,12 @@ import {
   loadDailyChallenge,
 } from './components/DailyChallenge';
 import { YesterdaysAnswers } from './components/YesterdaysAnswers';
+import { Statistics } from './components/Statistics';
 
 const App: () => JSX.Element = () => {
   const [showAnswers, setShowAnswers] = useState(false);
   const [showRules, setShowRules] = useState(false);
+  const [showStatistics, setShowStatistics] = useState(false);
   const [challenge, setChallenge] = useState<DailyChallenge>();
 
   useEffect(() => {
@@ -35,7 +37,9 @@ const App: () => JSX.Element = () => {
                 <NavDropdown.Item onClick={() => setShowRules(true)}>
                   How to Play
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Rankings</NavDropdown.Item>
+                <NavDropdown.Item onClick={() => setShowStatistics(true)}>
+                  Statistics
+                </NavDropdown.Item>
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>
@@ -81,6 +85,10 @@ const App: () => JSX.Element = () => {
                 setShowAnswers={setShowAnswers}
               />
             )}
+            <Statistics
+              showStatistics={showStatistics}
+              setShowStatistics={setShowStatistics}
+            />
           </Col>
         </Row>
       </Container>
