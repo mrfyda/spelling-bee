@@ -68,6 +68,14 @@ export const isPangram = (puzzle: Puzzle, word: string): boolean => {
   );
 };
 
+export const calculateScore = (puzzle: Puzzle, word: string): number => {
+  let score = 0;
+  if (word.length === 4) score += 1;
+  if (word.length > 4) score += word.length;
+  if (isPangram(puzzle, word)) score += 7;
+  return score;
+};
+
 export const InputControls: React.FC<{
   puzzle: Puzzle;
   guessedWords: string[];
@@ -77,14 +85,6 @@ export const InputControls: React.FC<{
 }> = ({ puzzle, guessedWords, score, setGuessedWords, setScore }) => {
   const guessInput = useRef<HTMLInputElement>(null);
   const [error, setError] = useState<string | undefined>(undefined);
-
-  function calculateScore(word: string): number {
-    let newScore = 0;
-    if (word.length === 4) newScore += 1;
-    if (word.length > 4) newScore += word.length;
-    if (isPangram(puzzle, word)) newScore += 7;
-    return newScore;
-  }
 
   function isInvalid(word: string): string | undefined {
     if (guessedWords.includes(word))
@@ -101,7 +101,7 @@ export const InputControls: React.FC<{
     answers.push(word);
     setGuessedWords(answers);
 
-    setScore(score + calculateScore(word));
+    setScore(score + calculateScore(puzzle, word));
   }
 
   function guessWord(): void {

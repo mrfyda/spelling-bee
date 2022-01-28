@@ -30,7 +30,7 @@ const PuzzleState: React.FC<{ puzzle: Puzzle }> = ({ puzzle }) => {
       </Col>
       <Col className="col-12 col-md-6 order-1 order-md-2">
         <Container className="my-2">
-          <Ranking puzzle={puzzle} guessedWords={guessedWords} />
+          <Ranking puzzle={puzzle} score={score} />
         </Container>
         <Container className="my-2">
           <GuessedWords puzzle={puzzle} guessedWords={guessedWords} />
