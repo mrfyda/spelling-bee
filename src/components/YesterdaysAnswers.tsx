@@ -22,10 +22,12 @@ export const YesterdaysAnswers: React.FC<{
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
+      scrollable
     >
       <Modal.Body>
         <h2>Yesterday&apos;s Answers:</h2>
         <WordList
+          classNames="d-md-block"
           puzzle={puzzle}
           answers={puzzle.answers}
           guessedWords={yesterdayGuessedWords}

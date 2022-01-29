@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal } from 'react-bootstrap';
-import { BarChart, Bar, XAxis } from 'recharts';
+import { BarChart, Bar, XAxis, ResponsiveContainer } from 'recharts';
 
 export const Statistics: React.FC<{
   showStatistics: boolean;
@@ -24,10 +24,12 @@ export const Statistics: React.FC<{
     >
       <Modal.Body>
         <h2>Statistics:</h2>
-        <BarChart width={766} height={400} data={data}>
-          <Bar dataKey="score" fill="#8884d8" />
-          <XAxis dataKey="id" />
-        </BarChart>
+        <ResponsiveContainer minHeight={400}>
+          <BarChart width={766} height={400} data={data}>
+            <Bar dataKey="score" fill="#ffc107" label />
+            <XAxis dataKey="id" interval="preserveStartEnd" />
+          </BarChart>
+        </ResponsiveContainer>
       </Modal.Body>
     </Modal>
   );

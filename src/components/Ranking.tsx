@@ -27,6 +27,7 @@ export const Ranking: React.FC<{
 
   return (
     <ProgressBar
+      variant="warning"
       now={(score * 100) / totalScore}
       label={`${rank} - ${score}`}
     />

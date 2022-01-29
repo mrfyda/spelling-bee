@@ -35,6 +35,7 @@ const PuzzleState: React.FC<{ puzzle: Puzzle }> = ({ puzzle }) => {
         <Container className="my-2">
           <p>You have found {guessedWords.length} words</p>
           <WordList
+            classNames="d-none d-md-block"
             puzzle={puzzle}
             answers={guessedWords}
             guessedWords={guessedWords}

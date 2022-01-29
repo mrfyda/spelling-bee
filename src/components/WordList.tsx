@@ -4,14 +4,15 @@ import { isPangram } from './InputControls';
 import { Puzzle } from './Puzzle';
 
 export const WordList: React.FC<{
+  classNames: string;
   puzzle: Puzzle;
   answers: string[];
   guessedWords: string[];
-}> = ({ puzzle, answers, guessedWords }) => {
+}> = ({ classNames, puzzle, answers, guessedWords }) => {
   return (
     <ListGroup
       variant="flush"
-      className="d-block"
+      className={classNames}
       style={{
         columnCount: 3,
         columnFill: 'auto',

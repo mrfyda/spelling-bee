@@ -4,6 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import styled from 'styled-components';
+
 import { Puzzle } from './Puzzle';
 import { haveSameContents } from '../common/haveSameContents.js';
 import { shuffle } from '../common/shuffle';
@@ -44,13 +45,13 @@ const Hex = styled.div`
     margin-top: 53px;
   }
   .hex.center .left {
-    border-right: 30px solid yellow;
+    border-right: 30px solid #ffc107;
   }
   .hex.center .middle {
-    background: yellow;
+    background: #ffc107;
   }
   .hex.center .right {
-    border-left: 30px solid yellow;
+    border-left: 30px solid #ffc107;
   }
   .hex button {
     border-radius: 0;
