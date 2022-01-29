@@ -1,9 +1,9 @@
 import React from 'react';
-import { ListGroup, Modal } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 
 import { Puzzle } from './Puzzle';
-import { isPangram } from './InputControls';
 import useLocalStorage from '../hooks/useLocalStorage';
+import { WordList } from './WordList';
 
 export const YesterdaysAnswers: React.FC<{
   puzzle: Puzzle;
@@ -25,28 +25,11 @@ export const YesterdaysAnswers: React.FC<{
     >
       <Modal.Body>
         <h2>Yesterday&apos;s Answers:</h2>
-        <ListGroup
-          variant="flush"
-          className="d-block"
-          style={{ columnCount: 3 }}
-        >
-          {puzzle.answers.map(answer => {
-            return (
-              <ListGroup.Item
-                key={answer}
-                className={
-                  `${isPangram(puzzle, answer) ? 'fw-bold' : ''}` +
-                  ` ` +
-                  `${
-                    !yesterdayGuessedWords.includes(answer) ? 'text-danger' : ''
-                  }`
-                }
-              >
-                {answer}
-              </ListGroup.Item>
-            );
-          })}
-        </ListGroup>
+        <WordList
+          puzzle={puzzle}
+          answers={puzzle.answers}
+          guessedWords={yesterdayGuessedWords}
+        />
       </Modal.Body>
     </Modal>
   );

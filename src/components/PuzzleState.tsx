@@ -3,7 +3,7 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import useLocalStorage from '../hooks/useLocalStorage';
-import { GuessedWords } from './GuessedWords';
+import { WordList } from './WordList';
 import { InputControls } from './InputControls';
 import { Puzzle } from './Puzzle';
 import { Ranking } from './Ranking';
@@ -33,7 +33,12 @@ const PuzzleState: React.FC<{ puzzle: Puzzle }> = ({ puzzle }) => {
           <Ranking puzzle={puzzle} score={score} />
         </Container>
         <Container className="my-2">
-          <GuessedWords puzzle={puzzle} guessedWords={guessedWords} />
+          <p>You have found {guessedWords.length} words</p>
+          <WordList
+            puzzle={puzzle}
+            answers={guessedWords}
+            guessedWords={guessedWords}
+          />
         </Container>
       </Col>
     </Row>
