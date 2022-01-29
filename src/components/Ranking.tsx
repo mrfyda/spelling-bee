@@ -4,6 +4,17 @@ import { ProgressBar } from 'react-bootstrap';
 import { calculateScore } from './InputControls';
 import { Puzzle } from './Puzzle';
 
+type Rank =
+  | 'Beginner'
+  | 'Good Start'
+  | 'Moving Up'
+  | 'Good'
+  | 'Solid'
+  | 'Nice'
+  | 'Great'
+  | 'Amazing'
+  | 'Genius';
+
 export const Ranking: React.FC<{
   puzzle: Puzzle;
   score: number;
@@ -12,6 +23,12 @@ export const Ranking: React.FC<{
     (total, answer) => total + calculateScore(puzzle, answer),
     0,
   );
+  const rank: Rank = 'Beginner';
 
-  return <ProgressBar now={(score * 100) / totalScore} />;
+  return (
+    <ProgressBar
+      now={(score * 100) / totalScore}
+      label={`${rank} - ${score}`}
+    />
+  );
 };
