@@ -1406,7 +1406,6 @@ chi
 chiado
 chiapas
 chiar
-chic
 chica
 chicote
 chifrar
@@ -1621,7 +1620,6 @@ convexo
 convir
 convite
 conviva
-cool
 copa
 copeiro
 copiado
@@ -1966,7 +1964,6 @@ diacho
 diante
 dica
 die
-diesel
 dieta
 diferir
 difuso
@@ -5705,7 +5702,6 @@ sisudo
 site
 sitiado
 sitiar
-situ
 situado
 situar
 skate
@@ -5869,7 +5865,6 @@ surdir
 surdo
 surf
 surfe
-surfer
 surgir
 surra
 surrado
@@ -6248,8 +6243,6 @@ tutano
 tutela
 tutelar
 tutor
-tutsi
-u
 ucha
 uivar
 uivo
@@ -6455,7 +6448,6 @@ vigiado
 vigiar
 vigor
 vigorar
-viii
 vil
 vila
 vilar
