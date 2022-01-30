@@ -77,6 +77,13 @@ export const calculateScore = (puzzle: Puzzle, word: string): number => {
   return score;
 };
 
+export const calculateTotalScore = (puzzle: Puzzle): number => {
+  return puzzle.answers.reduce(
+    (total, answer) => total + calculateScore(puzzle, answer),
+    0,
+  );
+};
+
 export const InputControls: React.FC<{
   puzzle: Puzzle;
   guessedWords: string[];
@@ -252,21 +259,21 @@ export const InputControls: React.FC<{
         <Col className="col-md-12 d-flex justify-content-center mt-3">
           <Button
             className="mx-2"
-            variant="outline-primary"
+            variant="outline-warning"
             onClick={() => clear()}
           >
             Delete
           </Button>{' '}
           <Button
             className="mx-2"
-            variant="outline-primary"
+            variant="outline-warning"
             onClick={() => showHint()}
           >
             Hint
           </Button>{' '}
           <Button
             className="mx-2"
-            variant="primary"
+            variant="warning"
             onClick={() => guessWord()}
           >
             Enter

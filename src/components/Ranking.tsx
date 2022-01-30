@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ProgressBar } from 'react-bootstrap';
 
-import { calculateScore } from './InputControls';
+import { calculateTotalScore } from './InputControls';
 import { Puzzle } from './Puzzle';
 
 type Rank =
@@ -15,21 +15,38 @@ type Rank =
   | 'Amazing'
   | 'Genius';
 
+export const ranks: [Rank, number][] = [
+  ['Beginner', 0],
+  ['Good Start', 2],
+  ['Moving Up', 5],
+  ['Good', 8],
+  ['Solid', 15],
+  ['Nice', 25],
+  ['Great', 40],
+  ['Amazing', 50],
+  ['Genius', 70],
+];
+
 export const Ranking: React.FC<{
   puzzle: Puzzle;
   score: number;
 }> = ({ puzzle, score }) => {
-  const totalScore = puzzle.answers.reduce(
-    (total, answer) => total + calculateScore(puzzle, answer),
-    0,
-  );
-  const rank: Rank = 'Beginner';
+  const [currentRank, setCurrentRank] = useState('Beginner');
+
+  useEffect(() => {
+    const [rank] = ranks.filter(
+      ([, minimumScorePercentage]) =>
+        minimumScorePercentage >=
+        Math.floor((score / calculateTotalScore(puzzle)) * 100),
+    )[0];
+    setCurrentRank(rank);
+  }, [puzzle, score]);
 
   return (
     <ProgressBar
       variant="warning"
-      now={(score * 100) / totalScore}
-      label={`${rank} - ${score}`}
+      now={(score * 100) / calculateTotalScore(puzzle)}
+      label={`${currentRank} - ${score}`}
     />
   );
 };
