@@ -8,6 +8,7 @@ import { WordList } from './WordList';
 import { InputControls } from './InputControls';
 import { Puzzle } from './Puzzle';
 import { Ranking } from './Ranking';
+import { Share } from './Share';
 
 const PuzzleState: React.FC<{ puzzle: Puzzle }> = ({ puzzle }) => {
   const [guessedWords, setGuessedWords] = useLocalStorage<string[]>(
@@ -19,7 +20,7 @@ const PuzzleState: React.FC<{ puzzle: Puzzle }> = ({ puzzle }) => {
   return (
     <Row className="d-flex">
       <Col className="col-12 col-md-6 align-items-center order-2 order-md-1">
-        <Container className="my-5">
+        <Container className="my-2 my-md-5">
           <InputControls
             puzzle={puzzle}
             guessedWords={guessedWords}
@@ -30,8 +31,19 @@ const PuzzleState: React.FC<{ puzzle: Puzzle }> = ({ puzzle }) => {
         </Container>
       </Col>
       <Col className="col-12 col-md-6 order-1 order-md-2">
-        <Container className="my-2">
-          <Ranking puzzle={puzzle} score={score} />
+        <Container className="my-2 my-md-5">
+          <Row className="align-items-center">
+            <Col className="col-8 com-md-10">
+              <Ranking puzzle={puzzle} score={score} />
+            </Col>
+            <Col className="col-4 com-md-col-2">
+              <Share
+                puzzle={puzzle}
+                score={score}
+                guessedWords={guessedWords}
+              />
+            </Col>
+          </Row>
         </Container>
         <Container className="my-2">
           <p>You have found {guessedWords.length} words</p>

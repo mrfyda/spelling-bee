@@ -27,6 +27,17 @@ export const ranks: [Rank, number][] = [
   ['Genius', 70],
 ];
 
+export function calculateCurrentRank(puzzle: Puzzle, score: number): Rank {
+  const [rank] = ranks
+    .filter(
+      ([, minimumScorePercentage]) =>
+        minimumScorePercentage <=
+        Math.floor((score / calculateTotalScore(puzzle)) * 100),
+    )
+    .slice(-1)[0];
+  return rank;
+}
+
 export const Ranking: React.FC<{
   puzzle: Puzzle;
   score: number;
@@ -34,14 +45,7 @@ export const Ranking: React.FC<{
   const [currentRank, setCurrentRank] = useState('Beginner');
 
   useEffect(() => {
-    const [rank] = ranks
-      .filter(
-        ([, minimumScorePercentage]) =>
-          minimumScorePercentage <=
-          Math.floor((score / calculateTotalScore(puzzle)) * 100),
-      )
-      .slice(-1)[0];
-    setCurrentRank(rank);
+    setCurrentRank(calculateCurrentRank(puzzle, score));
   }, [puzzle, score]);
 
   return (
@@ -49,6 +53,7 @@ export const Ranking: React.FC<{
       variant="warning"
       now={(score * 100) / calculateTotalScore(puzzle)}
       label={`${currentRank} - ${score}`}
+      style={{ height: 38 }}
     />
   );
 };
