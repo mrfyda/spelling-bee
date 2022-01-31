@@ -34,11 +34,13 @@ export const Ranking: React.FC<{
   const [currentRank, setCurrentRank] = useState('Beginner');
 
   useEffect(() => {
-    const [rank] = ranks.filter(
-      ([, minimumScorePercentage]) =>
-        minimumScorePercentage >=
-        Math.floor((score / calculateTotalScore(puzzle)) * 100),
-    )[0];
+    const [rank] = ranks
+      .filter(
+        ([, minimumScorePercentage]) =>
+          minimumScorePercentage <=
+          Math.floor((score / calculateTotalScore(puzzle)) * 100),
+      )
+      .slice(-1)[0];
     setCurrentRank(rank);
   }, [puzzle, score]);
 
