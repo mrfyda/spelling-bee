@@ -36,15 +36,15 @@ const App: () => JSX.Element = () => {
               <Nav.Link onClick={() => setShowAnswers(true)}>
                 Yesterday&apos;s Answers
               </Nav.Link>
+              <Nav.Link onClick={() => setShowStatistics(true)}>
+                Statistics
+              </Nav.Link>
               <NavDropdown title="More" id="basic-nav-dropdown">
                 <NavDropdown.Item onClick={() => setShowRules(true)}>
                   How to Play
                 </NavDropdown.Item>
                 <NavDropdown.Item onClick={() => setShowRankings(true)}>
                   Rankings
-                </NavDropdown.Item>
-                <NavDropdown.Item onClick={() => setShowStatistics(true)}>
-                  Statistics
                 </NavDropdown.Item>
               </NavDropdown>
             </Nav>
