@@ -11,9 +11,27 @@ export const Statistics: React.FC<{
     .map(k => {
       const id = k.split('|')[0];
       const score = localStorage.getItem(k);
-      return { id, score };
+      const regex = /(\d{2})(\d{2})(\d{4})/;
+      const match = regex.exec(id);
+      let date = new Date();
+      if (match && match.length > 2)
+        date = new Date(
+          parseInt(match[3], 10),
+          parseInt(match[2], 10) - 1,
+          parseInt(match[1], 10),
+        );
+      return { date, score };
     })
-    .sort((a, b) => (a.id > b.id ? 1 : -1));
+    .sort((a, b) => (a.date > b.date ? 1 : -1))
+    .map(({ date, score }) => {
+      return {
+        date: date.toLocaleDateString('en-US', {
+          month: 'short',
+          day: 'numeric',
+        }),
+        score,
+      };
+    });
   return (
     <Modal
       show={showStatistics}
@@ -27,7 +45,7 @@ export const Statistics: React.FC<{
         <ResponsiveContainer minHeight={400}>
           <BarChart width={766} height={400} data={data}>
             <Bar dataKey="score" fill="#ffc107" label />
-            <XAxis dataKey="id" interval="preserveStartEnd" />
+            <XAxis dataKey="date" interval="preserveStartEnd" />
           </BarChart>
         </ResponsiveContainer>
       </Modal.Body>

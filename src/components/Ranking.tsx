@@ -62,7 +62,6 @@ export const Ranking: React.FC<{
       variant="warning"
       now={(score * 100) / calculateTotalScore(puzzle)}
       label={`${currentRank} - ${score}`}
-      className="text-dark"
       style={{ height: 38 }}
     />
   );
