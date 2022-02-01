@@ -3,7 +3,7 @@ import { Modal } from 'react-bootstrap';
 
 import { calculateTotalScore } from './InputControls';
 import { Puzzle } from './Puzzle';
-import { ranks } from './Ranking';
+import { minimumScoreForRank, ranks } from './Ranking';
 
 export const Rankings: React.FC<{
   puzzle: Puzzle;
@@ -28,8 +28,9 @@ export const Rankings: React.FC<{
           {ranks.map(([rank, minimumScorePercentage]) => (
             <li key={rank}>
               {rank} (
-              {Math.floor(
-                calculateTotalScore(puzzle) * (minimumScorePercentage / 100),
+              {minimumScoreForRank(
+                calculateTotalScore(puzzle),
+                minimumScorePercentage,
               )}
               )
             </li>

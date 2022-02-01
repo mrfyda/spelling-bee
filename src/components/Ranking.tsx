@@ -27,12 +27,21 @@ export const ranks: [Rank, number][] = [
   ['Genius', 70],
 ];
 
+export function minimumScoreForRank(
+  totalScore: number,
+  minimumScorePercentage: number,
+): number {
+  return Math.floor(totalScore * (minimumScorePercentage / 100));
+}
+
 export function calculateCurrentRank(puzzle: Puzzle, score: number): Rank {
   const [rank] = ranks
     .filter(
       ([, minimumScorePercentage]) =>
-        minimumScorePercentage <=
-        Math.floor((score / calculateTotalScore(puzzle)) * 100),
+        minimumScoreForRank(
+          calculateTotalScore(puzzle),
+          minimumScorePercentage,
+        ) <= score,
     )
     .slice(-1)[0];
   return rank;
