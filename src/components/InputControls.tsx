@@ -3,64 +3,12 @@ import { Button, Form } from 'react-bootstrap';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import styled from 'styled-components';
 
 import { Puzzle } from './Puzzle';
 import { haveSameContents } from '../common/haveSameContents.js';
 import { shuffle } from '../common/shuffle';
 
-const Hex = styled.div`
-  margin-left: -26px;
-  .hex {
-    float: left;
-    margin-right: -26px;
-    margin-bottom: -50px;
-  }
-  .hex .left {
-    float: left;
-    width: 0;
-    border-right: 30px solid lightgray;
-    border-top: 52px solid transparent;
-    border-bottom: 52px solid transparent;
-  }
-  .hex .middle {
-    float: left;
-    width: 60px;
-    height: 104px;
-    background: lightgray;
-    border: 0;
-  }
-  .hex .right {
-    float: left;
-    width: 0;
-    border-left: 30px solid lightgray;
-    border-top: 52px solid transparent;
-    border-bottom: 52px solid transparent;
-  }
-  .hex-row {
-    clear: left;
-    min-width: 282px;
-  }
-  .hex.even {
-    margin-top: 53px;
-  }
-  .hex.center .left {
-    border-right: 30px solid #ffc107;
-  }
-  .hex.center .middle {
-    background: #ffc107;
-  }
-  .hex.center .right {
-    border-left: 30px solid #ffc107;
-  }
-  .hex button {
-    border-radius: 0;
-    color: black;
-    font-weight: 700;
-    font-size: 1.875em;
-    text-transform: uppercase;
-  }
-`;
+import './InputControls.scss';
 
 export const isPangram = (puzzle: Puzzle, word: string): boolean => {
   return haveSameContents(
@@ -81,6 +29,17 @@ export const calculateTotalScore = (puzzle: Puzzle): number => {
   return puzzle.answers.reduce(
     (total, answer) => total + calculateScore(puzzle, answer),
     0,
+  );
+};
+
+export const InputButton: React.FC<{
+  letter: string;
+  onClick: () => void;
+}> = ({ letter, onClick }) => {
+  return (
+    <Button variant="secondary" className="middle" onClick={onClick}>
+      {letter}
+    </Button>
   );
 };
 
@@ -165,7 +124,7 @@ export const InputControls: React.FC<{
       </Row>
       <Row className="mb-5">
         <Col className="col-md-12 d-flex justify-content-center">
-          <Hex>
+          <div className="hex-container">
             <div className="hex-row">
               <div className="hex invisible">
                 <div className="left" />
@@ -174,12 +133,10 @@ export const InputControls: React.FC<{
               </div>
               <div className="hex">
                 <div className="left" />
-                <Button
-                  className="middle"
+                <InputButton
+                  letter={puzzle.outerLetters[0]}
                   onClick={() => addLetter(puzzle.outerLetters[0])}
-                >
-                  {puzzle.outerLetters[0]}
-                </Button>
+                />
                 <div className="right" />
               </div>
               <div className="hex invisible">
@@ -191,68 +148,56 @@ export const InputControls: React.FC<{
             <div className="hex-row">
               <div className="hex">
                 <div className="left" />
-                <Button
-                  className="middle"
+                <InputButton
+                  letter={puzzle.outerLetters[1]}
                   onClick={() => addLetter(puzzle.outerLetters[1])}
-                >
-                  {puzzle.outerLetters[1]}
-                </Button>
+                />
                 <div className="right" />
               </div>
               <div className="hex even center">
                 <div className="left" />
-                <Button
-                  className="middle"
+                <InputButton
+                  letter={puzzle.centerLetter}
                   onClick={() => addLetter(puzzle.centerLetter)}
-                >
-                  {puzzle.centerLetter}
-                </Button>
+                />
                 <div className="right" />
               </div>
               <div className="hex">
                 <div className="left" />
-                <Button
-                  className="middle"
+                <InputButton
+                  letter={puzzle.outerLetters[2]}
                   onClick={() => addLetter(puzzle.outerLetters[2])}
-                >
-                  {puzzle.outerLetters[2]}
-                </Button>
+                />
                 <div className="right" />
               </div>
             </div>
             <div className="hex-row">
               <div className="hex">
                 <div className="left" />
-                <Button
-                  className="middle"
+                <InputButton
+                  letter={puzzle.outerLetters[3]}
                   onClick={() => addLetter(puzzle.outerLetters[3])}
-                >
-                  {puzzle.outerLetters[3]}
-                </Button>
+                />
                 <div className="right" />
               </div>
               <div className="hex even">
                 <div className="left" />
-                <Button
-                  className="middle"
+                <InputButton
+                  letter={puzzle.outerLetters[4]}
                   onClick={() => addLetter(puzzle.outerLetters[4])}
-                >
-                  {puzzle.outerLetters[4]}
-                </Button>
+                />
                 <div className="right" />
               </div>
               <div className="hex">
                 <div className="left" />
-                <Button
-                  className="middle"
+                <InputButton
+                  letter={puzzle.outerLetters[5]}
                   onClick={() => addLetter(puzzle.outerLetters[5])}
-                >
-                  {puzzle.outerLetters[5]}
-                </Button>
+                />
                 <div className="right" />
               </div>
             </div>
-          </Hex>
+          </div>
         </Col>
       </Row>
       <Row>

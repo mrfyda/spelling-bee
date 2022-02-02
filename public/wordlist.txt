@@ -3467,8 +3467,6 @@ ligada
 ligado
 ligar
 ligeiro
-light
-like
 limar
 limbo
 limiar

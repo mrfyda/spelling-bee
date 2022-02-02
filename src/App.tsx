@@ -27,7 +27,7 @@ const App: () => JSX.Element = () => {
 
   return (
     <>
-      <Navbar bg="light" expand="md">
+      <Navbar variant="light" bg="warning" expand="md">
         <Container>
           <Navbar.Brand href="#home">Spelling Bee</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />

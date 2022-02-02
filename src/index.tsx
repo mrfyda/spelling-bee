@@ -4,7 +4,9 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-dark-5/dist/css/bootstrap-dark-plugin.min.css';
 
 ReactDOM.render(
   <React.StrictMode>
