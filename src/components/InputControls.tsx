@@ -73,10 +73,15 @@ export const InputControls: React.FC<{
 
   function guessWord(): void {
     if (!guessInput.current) return;
-    const guess = guessInput.current.value.toLocaleLowerCase();
+    const guess = guessInput.current.value.toLocaleLowerCase().trim();
 
     const errorMessage = isInvalid(guess);
-    if (!errorMessage) updateState(guess);
+    if (!errorMessage) {
+      updateState(guess);
+      gtag('event', 'guess_correct', { puzzle: puzzle.id, word: guess });
+    } else {
+      gtag('event', 'guess_incorrect', { puzzle: puzzle.id, word: guess });
+    }
 
     setError(errorMessage);
     guessInput.current.value = '';
@@ -99,6 +104,8 @@ export const InputControls: React.FC<{
   }
 
   function showHint(): void {
+    gtag('event', 'hint');
+
     const nextWord = shuffle(
       puzzle.answers.filter(a => !guessedWords.includes(a)),
     )[0];

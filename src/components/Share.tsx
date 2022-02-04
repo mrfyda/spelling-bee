@@ -52,6 +52,8 @@ export const Share: React.FC<{
     <Button
       variant="warning"
       onClick={() => {
+        gtag('event', 'share');
+
         navigator.share({
           title: document.title,
           text:
