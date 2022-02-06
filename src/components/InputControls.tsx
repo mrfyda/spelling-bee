@@ -106,11 +106,18 @@ export const InputControls: React.FC<{
   function showHint(): void {
     gtag('event', 'hint');
 
-    const nextWord = shuffle(
+    const randomWord = shuffle(
       puzzle.answers.filter(a => !guessedWords.includes(a)),
     )[0];
+    const hint = randomWord
+      .split('')
+      .map((s, i) => {
+        if (i % 3 === 0) return s;
+        return '_';
+      })
+      .join(' ');
     // eslint-disable-next-line no-alert
-    alert(nextWord.replace(/(.).{1,3}/g, '$1 _ _ _ '));
+    alert(hint);
   }
 
   return (
