@@ -2,6 +2,8 @@
 
 import * as fs from 'fs';
 
+import { shuffle } from '../src/common/shuffle';
+
 function choice<T>(choices: Array<T>): T {
   const index = Math.floor(Math.random() * choices.length);
   return choices[index];
@@ -42,7 +44,7 @@ function generate(): void {
     if (pangrams.length > 0 && answers.length >= 25 && answers.length <= 30) {
       const puzzle = {
         centerLetter,
-        outerLetters: letters,
+        outerLetters: shuffle(letters),
         answers,
       };
 
