@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Overlay, Tooltip } from 'react-bootstrap';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -53,6 +53,10 @@ export const InputControls: React.FC<{
   const guessInput = useRef<HTMLInputElement>(null);
   const [error, setError] = useState<string | undefined>(undefined);
 
+  const showHintTarget = useRef(null);
+  const [currentHint, setCurrentHint] = useState<string>('');
+  const [showHint, setShowHint] = useState<boolean>(false);
+
   function isInvalid(word: string): string | undefined {
     if (guessedWords.includes(word))
       return `Word '${word}' was already guessed.`;
@@ -103,7 +107,7 @@ export const InputControls: React.FC<{
     }
   }
 
-  function showHint(): void {
+  function handleShowHint(): void {
     gtag('event', 'hint');
 
     const randomWord = shuffle(
@@ -116,8 +120,12 @@ export const InputControls: React.FC<{
         return '_';
       })
       .join(' ');
-    // eslint-disable-next-line no-alert
-    alert(hint);
+
+    setCurrentHint(hint);
+    setShowHint(true);
+    setTimeout(() => {
+      setShowHint(false);
+    }, 2000);
   }
 
   return (
@@ -226,10 +234,22 @@ export const InputControls: React.FC<{
           <Button
             className="mx-2"
             variant="outline-warning"
-            onClick={() => showHint()}
+            onClick={() => handleShowHint()}
+            ref={showHintTarget}
           >
             Hint
-          </Button>{' '}
+          </Button>
+          <Overlay
+            target={showHintTarget.current}
+            show={showHint}
+            placement="top"
+          >
+            {props => (
+              <Tooltip id="hint-overlay" {...props}>
+                {currentHint}
+              </Tooltip>
+            )}
+          </Overlay>{' '}
           <Button
             className="mx-2"
             variant="warning"
