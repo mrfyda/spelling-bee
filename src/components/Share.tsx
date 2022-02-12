@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { Button } from 'react-bootstrap';
+import React, { useEffect, useRef, useState } from 'react';
+import { Button, Overlay, Tooltip } from 'react-bootstrap';
+import { isMobile } from 'react-device-detect';
 
 import { calculateTotalScore, isPangram } from './InputControls';
 import { Puzzle } from './Puzzle';
@@ -34,6 +35,9 @@ export const Share: React.FC<{
     initialShareStatistics,
   );
 
+  const [show, setShow] = useState(false);
+  const target = useRef(null);
+
   useEffect(() => {
     const pangrams = guessedWords.filter(w => isPangram(puzzle, w));
     const totalScore = calculateTotalScore(puzzle);
@@ -48,26 +52,41 @@ export const Share: React.FC<{
     });
   }, [guessedWords, puzzle, score]);
 
-  return (
-    <Button
-      variant="warning"
-      onClick={() => {
-        gtag('event', 'share');
+  function handleShare(): void {
+    gtag('event', 'share');
 
-        navigator.share({
-          title: document.title,
-          text:
-            `I've made it to ${shareStatistics.rank}! ${shareStatistics.score}/${shareStatistics.guessedWords}/${shareStatistics.pangrams}` +
-            `\n${range(1, shareStatistics.progress)
-              .map(() => '🟨')
-              .join('')}${range(1, 5 - shareStatistics.progress)
-              .map(() => '⬜️')
-              .join('')}\n` +
-            `${window.location.href}`,
-        });
-      }}
-    >
-      Share
-    </Button>
+    const shareMessage =
+      `I've made it to ${shareStatistics.rank}! ${shareStatistics.score}/${shareStatistics.guessedWords}/${shareStatistics.pangrams}` +
+      `\n${range(1, shareStatistics.progress)
+        .map(() => '🟨')
+        .join('')}${range(1, 5 - shareStatistics.progress)
+        .map(() => '⬜️')
+        .join('')}\n` +
+      `${window.location.href}`;
+
+    if (isMobile) {
+      navigator.share({ title: document.title, text: shareMessage });
+    } else {
+      navigator.clipboard.writeText(shareMessage);
+      setShow(true);
+      setTimeout(() => {
+        setShow(false);
+      }, 2000);
+    }
+  }
+
+  return (
+    <>
+      <Button ref={target} variant="warning" onClick={() => handleShare()}>
+        Share
+      </Button>
+      <Overlay target={target.current} show={show} placement="bottom">
+        {props => (
+          <Tooltip id="share-overlay" {...props}>
+            Copied results to clipboard
+          </Tooltip>
+        )}
+      </Overlay>
+    </>
   );
 };
