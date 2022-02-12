@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 
 import { Puzzle } from './Puzzle';
-import { calculateCurrentRank } from './Ranking';
+import { calculateCurrentRank, minimumScoreForRank, ranks } from './Ranking';
 import { Share } from './Share';
 import useLocalStorage from '../hooks/useLocalStorage';
+import { calculateTotalScore } from './InputControls';
 
 export const EndGame: React.FC<{
   puzzle: Puzzle;
@@ -23,8 +24,18 @@ export const EndGame: React.FC<{
   };
 
   useEffect(() => {
-    const rank = calculateCurrentRank(puzzle, score);
-    if (rank >= 'Genius' && !dismissed) {
+    const [, minimumScorePercentageForGenius] = ranks.filter(
+      ([rank]) => rank === 'Genius',
+    )[0];
+
+    if (
+      score >=
+        minimumScoreForRank(
+          calculateTotalScore(puzzle),
+          minimumScorePercentageForGenius,
+        ) &&
+      !dismissed
+    ) {
       setShowEndGame(true);
     }
   }, [dismissed, puzzle, score]);
