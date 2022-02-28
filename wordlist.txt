@@ -3301,7 +3301,6 @@ jurema
 jurista
 juro
 jusante
-just
 justa
 justeza
 justo
@@ -4320,7 +4319,6 @@ pano
 pantera
 papa
 papado
-papai
 papal
 papar
 papel
@@ -4357,7 +4355,6 @@ partida
 partido
 partir
 parto
-party
 parva
 parvo
 pascal
@@ -4393,7 +4390,6 @@ patinar
 patroa
 patrono
 paulada
-paulino
 paulito
 pausa
 pausado
@@ -5170,7 +5166,6 @@ rolante
 rolar
 roleta
 rolha
-roll
 rolo
 romance
 romano
@@ -5463,7 +5458,6 @@ sismo
 sistema
 sistino
 sisudo
-site
 sitiado
 sitiar
 situado
