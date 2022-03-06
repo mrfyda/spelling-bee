@@ -49,7 +49,7 @@ function generate(): void {
       };
 
       fs.writeFileSync(
-        'public/puzzles/xx022022-pt.json',
+        'public/puzzles/xx032022-pt.json',
         JSON.stringify(puzzle, null, 2),
         'utf8',
       );
