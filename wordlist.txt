@@ -4643,7 +4643,6 @@ poro
 poroso
 porque
 porrada
-port
 porta
 portada
 portal
@@ -4732,7 +4731,6 @@ proeza
 profano
 profeta
 proibir
-project
 prol
 prole
 pronome
