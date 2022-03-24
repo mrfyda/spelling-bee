@@ -3,6 +3,10 @@
 import * as fs from 'fs';
 
 import { shuffle } from '../src/common/shuffle';
+import {
+  getPuzzleId,
+  getPuzzleFilename,
+} from '../src/components/DailyChallenge';
 
 function choice<T>(choices: Array<T>): T {
   const index = Math.floor(Math.random() * choices.length);
@@ -42,14 +46,19 @@ function generate(): void {
     setsInDictionary = setsInDictionary.filter(e => e !== allLetters);
 
     if (pangrams.length > 0 && answers.length >= 25 && answers.length <= 30) {
+      const id = getPuzzleId(new Date());
+
       const puzzle = {
         centerLetter,
         outerLetters: shuffle(letters),
         answers,
+        id,
       };
 
+      const filename = getPuzzleFilename(id);
+
       fs.writeFileSync(
-        'public/puzzles/xx032022-pt.json',
+        `public/puzzles/${filename}`,
         JSON.stringify(puzzle, null, 2),
         'utf8',
       );

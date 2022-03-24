@@ -6,13 +6,16 @@ export interface DailyChallenge {
   yesterday: Puzzle;
 }
 
-const getPuzzleFilename = (date: Date): string => {
+export const getPuzzleId = (date: Date): string => {
   return (
     `${String(date.getUTCDate()).padStart(2, '0')}` +
     `${String(date.getUTCMonth() + 1).padStart(2, '0')}` +
-    `${date.getUTCFullYear()}` +
-    `-pt.json`
+    `${date.getUTCFullYear()}`
   );
+};
+
+export const getPuzzleFilename = (id: string): string => {
+  return `${id}-pt.json`;
 };
 
 export const loadDailyChallenge = async (): Promise<DailyChallenge> => {
@@ -21,10 +24,10 @@ export const loadDailyChallenge = async (): Promise<DailyChallenge> => {
   yesterday.setDate(today.getDate() - 1);
 
   const t = await PuzzleLoader.load(
-    `/spelling-bee/puzzles/${getPuzzleFilename(today)}`,
+    `/spelling-bee/puzzles/${getPuzzleFilename(getPuzzleId(today))}`,
   );
   const y = await PuzzleLoader.load(
-    `/spelling-bee/puzzles/${getPuzzleFilename(yesterday)}`,
+    `/spelling-bee/puzzles/${getPuzzleFilename(getPuzzleId(yesterday))}`,
   );
   return { today: t, yesterday: y };
 };
