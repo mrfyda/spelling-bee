@@ -24,6 +24,60 @@ const App: () => JSX.Element = () => {
   useEffect(() => {
     loadDailyChallenge().then(setChallenge);
   }, []);
+  
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  // are comments considered?
+  
 
   return (
     <>
