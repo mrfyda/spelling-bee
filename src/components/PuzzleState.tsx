@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
+import Collapse from 'react-bootstrap/Collapse';
 import Container from 'react-bootstrap/Container';
+import ListGroup from 'react-bootstrap/ListGroup';
 import Row from 'react-bootstrap/Row';
 
 import useLocalStorage from '../hooks/useLocalStorage';
@@ -17,6 +20,8 @@ const PuzzleState: React.FC<{ puzzle: Puzzle }> = ({ puzzle }) => {
     [],
   );
   const [score, setScore] = useLocalStorage<number>(`${puzzle.id}|score`, 0);
+
+  const [showWordList, setShowWordList] = useState(false);
 
   return (
     <>
@@ -48,7 +53,27 @@ const PuzzleState: React.FC<{ puzzle: Puzzle }> = ({ puzzle }) => {
             </Row>
           </Container>
           <Container className="my-2">
-            <p>You have found {guessedWords.length} words</p>
+            <div className="d-grid gap-2">
+              <Button
+                variant="link"
+                className="d-block d-md-none"
+                onClick={() => setShowWordList(!showWordList)}
+              >
+                You have found {guessedWords.length} words
+              </Button>
+              <Collapse in={showWordList}>
+                <ListGroup>
+                  {guessedWords.map(answer => {
+                    return (
+                      <ListGroup.Item key={answer}>{answer}</ListGroup.Item>
+                    );
+                  })}
+                </ListGroup>
+              </Collapse>
+            </div>
+            <p className="d-none d-md-block">
+              You have found {guessedWords.length} words
+            </p>
             <WordList
               classNames="d-none d-md-block"
               puzzle={puzzle}
