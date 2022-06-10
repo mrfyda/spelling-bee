@@ -8,7 +8,7 @@ import Row from 'react-bootstrap/Row';
 
 import useLocalStorage from '../hooks/useLocalStorage';
 import { WordList } from './WordList';
-import { InputControls } from './InputControls';
+import { InputControls, isPangram } from './InputControls';
 import { Puzzle } from './Puzzle';
 import { Ranking } from './Ranking';
 import { Share } from './Share';
@@ -65,7 +65,12 @@ const PuzzleState: React.FC<{ puzzle: Puzzle }> = ({ puzzle }) => {
                 <ListGroup>
                   {guessedWords.map(answer => {
                     return (
-                      <ListGroup.Item key={answer}>{answer}</ListGroup.Item>
+                      <ListGroup.Item
+                        key={answer}
+                        className={isPangram(puzzle, answer) ? 'fw-bold' : ''}
+                      >
+                        {answer}
+                      </ListGroup.Item>
                     );
                   })}
                 </ListGroup>
