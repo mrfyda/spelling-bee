@@ -12,7 +12,8 @@ import { InputControls, isPangram } from './InputControls';
 import { Puzzle } from './Puzzle';
 import { Ranking } from './Ranking';
 import { Share } from './Share';
-import { EndGame } from './EndGame';
+import { EndGameModal } from './EndGameModal';
+import { GeniusModal } from './GeniusModal';
 
 const PuzzleState: React.FC<{ puzzle: Puzzle }> = ({ puzzle }) => {
   const [guessedWords, setGuessedWords] = useLocalStorage<string[]>(
@@ -88,7 +89,8 @@ const PuzzleState: React.FC<{ puzzle: Puzzle }> = ({ puzzle }) => {
           </Container>
         </Col>
       </Row>
-      <EndGame puzzle={puzzle} score={score} guessedWords={guessedWords} />
+      <GeniusModal puzzle={puzzle} score={score} guessedWords={guessedWords} />
+      <EndGameModal puzzle={puzzle} score={score} guessedWords={guessedWords} />
     </>
   );
 };

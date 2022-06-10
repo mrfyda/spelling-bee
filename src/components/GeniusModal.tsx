@@ -7,19 +7,19 @@ import { Share } from './Share';
 import useLocalStorage from '../hooks/useLocalStorage';
 import { calculateTotalScore } from './InputControls';
 
-export const EndGame: React.FC<{
+export const GeniusModal: React.FC<{
   puzzle: Puzzle;
   guessedWords: string[];
   score: number;
 }> = ({ puzzle, guessedWords, score }) => {
-  const [showEndGame, setShowEndGame] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [dismissed, setDismissed] = useLocalStorage<boolean>(
-    `${puzzle.id}|endgame`,
+    `${puzzle.id}|genius`,
     false,
   );
 
   const hide = (): void => {
-    setShowEndGame(false);
+    setShowModal(false);
     setDismissed(true);
   };
 
@@ -36,13 +36,13 @@ export const EndGame: React.FC<{
         ) &&
       !dismissed
     ) {
-      setShowEndGame(true);
+      setShowModal(true);
     }
   }, [dismissed, puzzle, score]);
 
   return (
     <Modal
-      show={showEndGame}
+      show={showModal}
       onHide={hide}
       size="sm"
       aria-labelledby="contained-modal-title-vcenter"
