@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -8,11 +8,13 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-dark-5/dist/css/bootstrap-dark-plugin.min.css';
 
-ReactDOM.render(
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+const root = createRoot(document.getElementById('root')!);
+
+root.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('root'),
 );
 
 function sendToGoogleAnalytics({
