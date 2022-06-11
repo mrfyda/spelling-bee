@@ -26,6 +26,12 @@ export const YesterdaysAnswers: React.FC<{
     >
       <Modal.Body>
         <h2>Yesterday&apos;s Answers:</h2>
+        <p>
+          <strong>
+            <span className="text-warning">{`${puzzle.centerLetter.toUpperCase()} `}</span>
+            {puzzle.outerLetters.map(l => l.toUpperCase()).join(' ')}
+          </strong>
+        </p>
         <WordList
           classNames="d-md-block"
           puzzle={puzzle}
