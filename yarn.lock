@@ -2758,6 +2758,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/latinize@npm:^0":
+  version: 0.2.15
+  resolution: "@types/latinize@npm:0.2.15"
+  checksum: 816a34cc63094c1559ca08c1a56bb010d65cd59c28b73b8e9da10fe18d603e7f724e57930144b4acb16dadf186246e20a52ae9c4a77f2b5343cd9f492159ea15
+  languageName: node
+  linkType: hard
+
 "@types/mime@npm:^1":
   version: 1.3.2
   resolution: "@types/mime@npm:1.3.2"
@@ -8451,6 +8458,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"latinize@npm:^0.5.0":
+  version: 0.5.0
+  resolution: "latinize@npm:0.5.0"
+  checksum: 865ad9be466f81b3a90676ea930465498bdbfd643e193539d34955172f005b21e3d46129c70329aa5760b523c200cf7153d6975d1491ca17fcd07fd28783927d
+  languageName: node
+  linkType: hard
+
 "leven@npm:^3.1.0":
   version: 3.1.0
   resolution: "leven@npm:3.1.0"
@@ -12858,6 +12872,7 @@ __metadata:
     "@testing-library/user-event": ^14.2.0
     "@types/gtag.js": ^0.0.10
     "@types/jest": ^28.1.1
+    "@types/latinize": ^0
     "@types/node": ^17.0.41
     "@types/react": ^18.0.12
     "@types/react-dom": ^18.0.5
@@ -12875,6 +12890,7 @@ __metadata:
     eslint-plugin-react: ^7.28.0
     eslint-plugin-react-hooks: ^4.3.0
     gh-pages: ^4.0.0
+    latinize: ^0.5.0
     prettier: ^2.6.2
     react: ^18.1.0
     react-bootstrap: ^2.4.0

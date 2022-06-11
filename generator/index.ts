@@ -1,6 +1,8 @@
 #!/usr/bin/env ts-node
 
 import * as fs from 'fs';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import latinize from 'latinize';
 
 import { shuffle } from '../src/common/shuffle';
 import {
@@ -17,7 +19,10 @@ function generate(): void {
   const dictionary = fs.readFileSync('public/wordlist.txt', 'utf8');
   const lines = dictionary.split(/\r?\n/);
 
-  const words = lines.map(l => l.trim()).filter(l => l.length >= 4);
+  const words = lines
+    .map(l => l.trim())
+    .filter(l => l.length >= 4)
+    .map(l => latinize(l));
 
   let setsInDictionary: Array<Set<string>> = [];
 
