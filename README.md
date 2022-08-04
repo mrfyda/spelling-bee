@@ -1,5 +1,7 @@
 # Getting Started with Create React App
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1a1d6915a5c24abf9a817718cbeee26d)](https://app.codacy.com/gh/mrfyda/spelling-bee?utm_source=github.com&utm_medium=referral&utm_content=mrfyda/spelling-bee&utm_campaign=Badge_Grade_Settings)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
