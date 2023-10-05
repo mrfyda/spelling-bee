@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import { BarChart, Bar, XAxis, ResponsiveContainer } from 'recharts';
 
@@ -6,6 +6,10 @@ export const Statistics: React.FC<{
   showStatistics: boolean;
   setShowStatistics: (show: boolean) => void;
 }> = ({ showStatistics, setShowStatistics }) => {
+  const defaultData: {date: string, score: string | null}[] = []
+  const [data, setData] = useState(defaultData);
+
+  useEffect(() => {
   const data = Object.keys({ ...localStorage })
     .filter(k => k.includes('|score'))
     .map(k => {
@@ -32,6 +36,9 @@ export const Statistics: React.FC<{
         score,
       };
     });
+    setData(data)
+  }, []);
+
   return (
     <Modal
       show={showStatistics}
