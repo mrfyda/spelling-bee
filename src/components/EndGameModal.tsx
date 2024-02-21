@@ -13,6 +13,7 @@ export const EndGameModal: React.FC<{
   score: number;
 }> = ({ puzzle, guessedWords, score }) => {
   const [showModal, setShowModal] = useState(false);
+  const [featureFlag, setFeatureFlag] = useState(false);
   const [dismissed, setDismissed] = useLocalStorage<boolean>(
     `${puzzle.id}|endgame`,
     false,
@@ -27,6 +28,10 @@ export const EndGameModal: React.FC<{
     if (score >= calculateTotalScore(puzzle) && !dismissed) {
       setShowModal(true);
     }
+
+    // TODO: get data from third-party
+    setFeatureFlag(true)
+    
   }, [dismissed, puzzle, score]);
 
   return (
