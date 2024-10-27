@@ -8,7 +8,7 @@ import { Puzzle } from './Puzzle';
 import { haveSameContents } from '../common/haveSameContents.js';
 import { shuffle } from '../common/shuffle';
 
-import './InputControls.scss';
+import styles from './InputControls.module.scss';
 
 export const isPangram = (puzzle: Puzzle, word: string): boolean => {
   return haveSameContents(
@@ -37,7 +37,7 @@ export const InputButton: React.FC<{
   onClick: () => void;
 }> = ({ letter, onClick }) => {
   return (
-    <Button variant="secondary" className="middle" onClick={onClick}>
+    <Button variant="secondary" className={styles.middle} onClick={onClick}>
       {letter}
     </Button>
   );
@@ -146,77 +146,77 @@ export const InputControls: React.FC<{
       </Row>
       <Row className="mb-5">
         <Col className="col-md-12 d-flex justify-content-center">
-          <div className="hex-container">
-            <div className="hex-row">
-              <div className="hex invisible">
-                <div className="left" />
-                <div className="middle" />
-                <div className="right" />
+          <div className={styles.hex_container}>
+            <div className={styles.hex_row}>
+              <div className={`${styles.hex} invisible`}>
+                <div className={styles.left} />
+                <div className={styles.middle} />
+                <div className={styles.right} />
               </div>
-              <div className="hex">
-                <div className="left" />
+              <div className={styles.hex}>
+                <div className={styles.left} />
                 <InputButton
                   letter={puzzle.outerLetters[0]}
                   onClick={() => addLetter(puzzle.outerLetters[0])}
                 />
-                <div className="right" />
+                <div className={styles.right} />
               </div>
-              <div className="hex invisible">
-                <div className="left" />
-                <div className="middle" />
-                <div className="right" />
+              <div className={`${styles.hex} invisible`}>
+                <div className={styles.left} />
+                <div className={styles.middle} />
+                <div className={styles.right} />
               </div>
             </div>
-            <div className="hex-row">
-              <div className="hex">
-                <div className="left" />
+            <div className={styles.hex_row}>
+              <div className={styles.hex}>
+                <div className={styles.left} />
                 <InputButton
                   letter={puzzle.outerLetters[1]}
                   onClick={() => addLetter(puzzle.outerLetters[1])}
                 />
-                <div className="right" />
+                <div className={styles.right} />
               </div>
-              <div className="hex even center">
-                <div className="left" />
+              <div className={`${styles.hex} ${styles.even} ${styles.center}`}>
+                <div className={styles.left} />
                 <InputButton
                   letter={puzzle.centerLetter}
                   onClick={() => addLetter(puzzle.centerLetter)}
                 />
-                <div className="right" />
+                <div className={styles.right} />
               </div>
-              <div className="hex">
-                <div className="left" />
+              <div className={styles.hex}>
+                <div className={styles.left} />
                 <InputButton
                   letter={puzzle.outerLetters[2]}
                   onClick={() => addLetter(puzzle.outerLetters[2])}
                 />
-                <div className="right" />
+                <div className={styles.right} />
               </div>
             </div>
-            <div className="hex-row">
-              <div className="hex">
-                <div className="left" />
+            <div className={styles.hex_row}>
+              <div className={styles.hex}>
+                <div className={styles.left} />
                 <InputButton
                   letter={puzzle.outerLetters[3]}
                   onClick={() => addLetter(puzzle.outerLetters[3])}
                 />
-                <div className="right" />
+                <div className={styles.right} />
               </div>
-              <div className="hex even">
-                <div className="left" />
+              <div className={`${styles.hex} ${styles.even}`}>
+                <div className={styles.left} />
                 <InputButton
                   letter={puzzle.outerLetters[4]}
                   onClick={() => addLetter(puzzle.outerLetters[4])}
                 />
-                <div className="right" />
+                <div className={styles.right} />
               </div>
-              <div className="hex">
-                <div className="left" />
+              <div className={styles.hex}>
+                <div className={styles.left} />
                 <InputButton
                   letter={puzzle.outerLetters[5]}
                   onClick={() => addLetter(puzzle.outerLetters[5])}
                 />
-                <div className="right" />
+                <div className={styles.right} />
               </div>
             </div>
           </div>
